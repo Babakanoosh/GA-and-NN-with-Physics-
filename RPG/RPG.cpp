@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "rendering.h"
 
 using namespace std;
 
@@ -7,125 +8,107 @@ GLfloat xscl = 1, yscl = 1, zscl = 1;
 GLfloat zoomMSG = -5.0;
 int keyMSG = 0;
 
-void init(GLvoid) // Create Some Everyday  Functions
-{
-
-	glShadeModel(GL_FLAT);	// Enable Smooth Shading also stops sides from being a shitty gradient
-	glClearColor(1.0f, 1.0f, 0.8f, 0.0f);	//Background
-	glClearDepth(1.0f);	// Depth Buffer Setup
-	//glEnable(GL_DEPTH_TEST);	// Enables Depth Testing
-	//glDepthFunc(GL_LEQUAL);	// The Type Of Depth Testing To Do
-	//glEnable(GL_COLOR_MATERIAL);
-	//glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-}
-
-void resize(int width, int height)
-{
-    glViewport(0, 0, width, height);
-
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluPerspective(60.0f, (GLfloat)width/(GLfloat)height, 1.0f, 5000.0f);
-
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LEQUAL);
-
-    glEnable(GL_CULL_FACE);
-}
 
 void display()
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
 
-	if(keyMSG == 1){
-		glTranslatef(0.0f,0.0f,zoomMSG);
+	if (keyMSG == 1) {
+		glTranslatef(0.0f, 0.0f, zoomMSG);
 		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot,1.0f,0.0f,0.0f);
+		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
 		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
 		xrot -= 1.6f;
 		keyMSG = 0;
 
-	}else if(keyMSG == 2){
-		glTranslatef(0.0f,0.0f,zoomMSG);
+	}
+	else if (keyMSG == 2) {
+		glTranslatef(0.0f, 0.0f, zoomMSG);
 		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot,1.0f,0.0f,0.0f);
+		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
 		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
 		yrot -= 1.6f;
 		keyMSG = 0;
 
-	}else if(keyMSG == 3){
-		glTranslatef(0.0f,0.0f,zoomMSG);
+	}
+	else if (keyMSG == 3) {
+		glTranslatef(0.0f, 0.0f, zoomMSG);
 		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot,1.0f,0.0f,0.0f);
+		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
 		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
 		xrot += 1.6f;
 		keyMSG = 0;
 
-	}else if(keyMSG == 4){
-		glTranslatef(0.0f,0.0f,zoomMSG);
+	}
+	else if (keyMSG == 4) {
+		glTranslatef(0.0f, 0.0f, zoomMSG);
 		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot,1.0f,0.0f,0.0f);
+		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
 		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
 		yrot += 1.6f;
 		keyMSG = 0;
 
-	}else if(keyMSG == 5){
-		if(xscl > 1 || yscl > 1  || zscl > 1 ){
+	}
+	else if (keyMSG == 5) {
+		if (xscl > 1 || yscl > 1 || zscl > 1) {
 			xscl /= 1.5;
 			yscl /= 1.5;
 			zscl /= 1.5;
-		}else{
+		}
+		else {
 			xscl /= 1.5;
 			yscl /= 1.5;
 			zscl /= 1.5;
 		}
 
-		glTranslatef(0.0f,0.0f,zoomMSG);
+		glTranslatef(0.0f, 0.0f, zoomMSG);
 		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot,1.0f,0.0f,0.0f);
+		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
 		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
 		keyMSG = 0;
 
-	}else if(keyMSG == 6){
-		if(xscl > 1 || yscl > 1  || zscl > 1 ){
-			xscl *= 1.5;
-			yscl *= 1.5;
-			zscl *= 1.5;
-		}else{
+	}
+	else if (keyMSG == 6) {
+		if (xscl > 1 || yscl > 1 || zscl > 1) {
 			xscl *= 1.5;
 			yscl *= 1.5;
 			zscl *= 1.5;
 		}
-		
-		glTranslatef(0.0f,0.0f,zoomMSG);
+		else {
+			xscl *= 1.5;
+			yscl *= 1.5;
+			zscl *= 1.5;
+		}
+
+		glTranslatef(0.0f, 0.0f, zoomMSG);
 		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot,1.0f,0.0f,0.0f);
+		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
 		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
 		keyMSG = 0;
 
-	}else if(keyMSG == 7){
+	}
+	else if (keyMSG == 7) {
 		zoomMSG += -1;
 
-		glTranslatef(0.0f,0.0f,zoomMSG);
+		glTranslatef(0.0f, 0.0f, zoomMSG);
 		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot,1.0f,0.0f,0.0f);
+		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
 		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
 		keyMSG = 0;
-	}else if(keyMSG == 8){
+	}
+	else if (keyMSG == 8) {
 		zoomMSG += 1;
 
-		glTranslatef(0.0f,0.0f,zoomMSG);
+		glTranslatef(0.0f, 0.0f, zoomMSG);
 		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot,1.0f,0.0f,0.0f);
+		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
 		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
 		keyMSG = 0;
 
-	}else if(keyMSG == 9){
+	}
+	else if (keyMSG == 9) {
 		xscl = 1;
 		yscl = 1;
 		zscl = 1;
@@ -134,79 +117,82 @@ void display()
 		zrot = 0;
 		zoomMSG = -5.0;
 
-		glTranslatef(0.0f,0.0f,zoomMSG);
+		glTranslatef(0.0f, 0.0f, zoomMSG);
 		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot,1.0f,0.0f,0.0f);
+		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
 		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
 
 		keyMSG = 0;
 
-	}else{
-		glTranslatef(0.0f,0.0f,zoomMSG);
+	}
+	else {
+		glTranslatef(0.0f, 0.0f, zoomMSG);
 		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot,1.0f,0.0f,0.0f);
+		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
 		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
-		
+
 	}
 
 	//pyramid sides without face
 	glBegin(GL_TRIANGLE_FAN);
-	
-		glVertex3f( 0.0, 1.0, -1.0);//dunno
 
-		//front face
-			glVertex3f(-1.0, 0.0, 0.0);
-		glColor3f(0.0f, 1.0f, 0.0f);
-		
-		glVertex3f(1.0f, 0.0f, 0.0f);//dunno
+	glVertex3f(0.0, 1.0, -1.0);//dunno
 
-		//right face
-		glColor3f(1.0f,0.5f,0.0f);
-			glVertex3f(1.0f, 0.0f,-2.0f);
+							   //front face
+	glVertex3f(-1.0, 0.0, 0.0);
+	glColor3f(0.0f, 1.0f, 0.0f);
 
-		//back face
-		glColor3f(0.7f,0.1f,0.4f);
-			glVertex3f(-1.0f,0.0f, -2.0f);
+	glVertex3f(1.0f, 0.0f, 0.0f);//dunno
 
-		//left face
-		glColor3f(0.0f,0.0f,1.0f); 
-			glVertex3f(-1.0, 0.0, 0.0);
+								 //right face
+	glColor3f(1.0f, 0.5f, 0.0f);
+	glVertex3f(1.0f, 0.0f, -2.0f);
+
+	//back face
+	glColor3f(0.7f, 0.1f, 0.4f);
+	glVertex3f(-1.0f, 0.0f, -2.0f);
+
+	//left face
+	glColor3f(0.0f, 0.0f, 1.0f);
+	glVertex3f(-1.0, 0.0, 0.0);
 
 	glEnd();
 
 	//base
 	glBegin(GL_QUADS);
-		glColor3f(1.0f,0.0f,1.0f);
-		glVertex3f( 1.0f, 0.0f,-2.0f);
-		glVertex3f( 1.0f, 0.0f, 0.0f);
-		glVertex3f( -1.0f, 0.0f, 0.0f);
-		glVertex3f( -1.0f, 0.0f,-2.0f);
-		
+	glColor3f(1.0f, 0.0f, 1.0f);
+	glVertex3f(1.0f, 0.0f, -2.0f);
+	glVertex3f(1.0f, 0.0f, 0.0f);
+	glVertex3f(-1.0f, 0.0f, 0.0f);
+	glVertex3f(-1.0f, 0.0f, -2.0f);
+
 	glEnd();
 
 	glBegin(GL_LINES);
 
-	glColor3f(1.0f,0.0f,0.0f);
+	glColor3f(1.0f, 0.0f, 0.0f);
 
-	glVertex3f( -1.5f, 3.0f,-1.0f);
-	glVertex3f( -1.5f, 1.0f,-1.0f);
+	glVertex3f(-1.5f, 3.0f, -1.0f);
+	glVertex3f(-1.5f, 1.0f, -1.0f);
 
-	glVertex3f( -1.5f, 2.0f,-1.0f);
-	glVertex3f( -0.5f, 2.0f,-1.0f);
+	glVertex3f(-1.5f, 2.0f, -1.0f);
+	glVertex3f(-0.5f, 2.0f, -1.0f);
 
-	glVertex3f( -0.5f, 3.0f,-1.0f);
-	glVertex3f( -0.5f, 1.0f,-1.0f);
+	glVertex3f(-0.5f, 3.0f, -1.0f);
+	glVertex3f(-0.5f, 1.0f, -1.0f);
 
-	glVertex3f( 0.0f, 2.75f,-1.0f);
-	glVertex3f( 0.0f, 1.0f,-1.0f);
+	glVertex3f(0.0f, 2.75f, -1.0f);
+	glVertex3f(0.0f, 1.0f, -1.0f);
 
-	glVertex3f( 0.0f, 2.85f,-1.0f);
-	glVertex3f( 0.0f, 3.0f, -1.0f);
-	
+	glVertex3f(0.0f, 2.85f, -1.0f);
+	glVertex3f(0.0f, 3.0f, -1.0f);
+
 	glEnd();
 
-    glutSwapBuffers();
+	glutSwapBuffers();
 }
+
+void init(GLvoid);
 
 void key1(unsigned char key, int x, int y)
 {
@@ -264,13 +250,9 @@ void key1(unsigned char key, int x, int y)
     glutPostRedisplay();
 }
 
-void idle()
-{
-    glutPostRedisplay();
-}
-
 int main(int argc, char *argv[])
 {
+	
 	cout<<"Rotate:"<<endl
 		  <<"  8: Forward"<<endl
 		  <<"  5: Backward"<<endl
@@ -298,11 +280,20 @@ int main(int argc, char *argv[])
     glutKeyboardFunc(key1);
     glutIdleFunc(idle);
 
-
-
     glutMainLoop();
 }
 
+void init(GLvoid) // Create Some Everyday  Functions
+{
+
+	glShadeModel(GL_FLAT);	// Enable Smooth Shading also stops sides from being a shitty gradient
+	glClearColor(1.0f, 1.0f, 0.8f, 0.0f);	//Background
+	glClearDepth(1.0f);	// Depth Buffer Setup
+						//glEnable(GL_DEPTH_TEST);	// Enables Depth Testing
+						//glDepthFunc(GL_LEQUAL);	// The Type Of Depth Testing To Do
+						//glEnable(GL_COLOR_MATERIAL);
+						//glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+}
 
 //glutKeyboardUpFunc for more than one key press
 
