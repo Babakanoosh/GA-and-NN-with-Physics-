@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "rendering.h"
+#include "file.h"
 
 using namespace std;
 
