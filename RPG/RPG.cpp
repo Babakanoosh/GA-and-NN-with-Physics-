@@ -15,7 +15,7 @@ void display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
-
+	
 	if (keyMSG == 1) {
 		glTranslatef(0.0f, 0.0f, zoomMSG);
 		glScalef(xscl, yscl, zscl);
@@ -131,8 +131,11 @@ void display()
 		glScalef(xscl, yscl, zscl);
 		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
 		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
-
+		
 	}
+	
+
+
 
 	//pyramid sides without face
 	glBegin(GL_TRIANGLE_FAN);
@@ -280,6 +283,7 @@ int main(int argc, char *argv[])
     glutDisplayFunc(display);
     glutKeyboardFunc(key1);
     glutIdleFunc(idle);
+
 
     glutMainLoop();
 }

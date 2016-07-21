@@ -1,5 +1,6 @@
 #include "rendering.h"
 #include "stdafx.h"
+
 void idle()
 {
 glutPostRedisplay();
