@@ -35,9 +35,6 @@ void display()
 
 
 
-
-
-
 	//pyramid sides without face
 	glBegin(GL_TRIANGLE_FAN);
 

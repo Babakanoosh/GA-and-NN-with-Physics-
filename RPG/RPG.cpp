@@ -5,254 +5,6 @@
 
 using namespace std;
 
-GLfloat xrot, yrot, zrot;
-GLfloat xscl = 1, yscl = 1, zscl = 1;
-GLfloat zoomMSG = -5.0;
-int keyMSG = 0;
-
-
-void displayz()
-{
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glLoadIdentity();
-
-	
-	if (keyMSG == 1) {
-		glTranslatef(0.0f, 0.0f, zoomMSG);
-		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
-		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
-		xrot -= 1.6f;
-		keyMSG = 0;
-
-	}
-	else if (keyMSG == 2) {
-		glTranslatef(0.0f, 0.0f, zoomMSG);
-		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
-		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
-		yrot -= 1.6f;
-		keyMSG = 0;
-
-	}
-	else if (keyMSG == 3) {
-		glTranslatef(0.0f, 0.0f, zoomMSG);
-		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
-		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
-		xrot += 1.6f;
-		keyMSG = 0;
-
-	}
-	else if (keyMSG == 4) {
-		glTranslatef(0.0f, 0.0f, zoomMSG);
-		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
-		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
-		yrot += 1.6f;
-		keyMSG = 0;
-
-	}
-	else if (keyMSG == 5) {
-		if (xscl > 1 || yscl > 1 || zscl > 1) {
-			xscl /= 1.5;
-			yscl /= 1.5;
-			zscl /= 1.5;
-		}
-		else {
-			xscl /= 1.5;
-			yscl /= 1.5;
-			zscl /= 1.5;
-		}
-
-		glTranslatef(0.0f, 0.0f, zoomMSG);
-		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
-		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
-		keyMSG = 0;
-
-	}
-	else if (keyMSG == 6) {
-		if (xscl > 1 || yscl > 1 || zscl > 1) {
-			xscl *= 1.5;
-			yscl *= 1.5;
-			zscl *= 1.5;
-		}
-		else {
-			xscl *= 1.5;
-			yscl *= 1.5;
-			zscl *= 1.5;
-		}
-
-		glTranslatef(0.0f, 0.0f, zoomMSG);
-		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
-		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
-		keyMSG = 0;
-
-	}
-	else if (keyMSG == 7) {
-		zoomMSG += -1;
-
-		glTranslatef(0.0f, 0.0f, zoomMSG);
-		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
-		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
-		keyMSG = 0;
-	}
-	else if (keyMSG == 8) {
-		zoomMSG += 1;
-
-		glTranslatef(0.0f, 0.0f, zoomMSG);
-		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
-		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
-		keyMSG = 0;
-
-	}
-	else if (keyMSG == 9) {
-		xscl = 1;
-		yscl = 1;
-		zscl = 1;
-		xrot = 0;
-		yrot = 0;
-		zrot = 0;
-		zoomMSG = -5.0;
-
-		glTranslatef(0.0f, 0.0f, zoomMSG);
-		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
-		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
-
-		keyMSG = 0;
-
-	}
-	else {
-		glTranslatef(0.0f, 0.0f, zoomMSG);
-		glScalef(xscl, yscl, zscl);
-		glRotatef(xrot, 1.0f, 0.0f, 0.0f);
-		glRotatef(yrot, 0.0f, 1.0f, 0.0f);
-		
-	}
-	
-
-
-
-	//pyramid sides without face
-	glBegin(GL_TRIANGLE_FAN);
-
-	glVertex3f(0.0, 1.0, -1.0);//dunno
-
-							   //front face
-	glVertex3f(-1.0, 0.0, 0.0);
-	glColor3f(0.0f, 1.0f, 0.0f);
-
-	glVertex3f(1.0f, 0.0f, 0.0f);//dunno
-
-								 //right face
-	glColor3f(1.0f, 0.5f, 0.0f);
-	glVertex3f(1.0f, 0.0f, -2.0f);
-
-	//back face
-	glColor3f(0.7f, 0.1f, 0.4f);
-	glVertex3f(-1.0f, 0.0f, -2.0f);
-
-	//left face
-	glColor3f(0.0f, 0.0f, 1.0f);
-	glVertex3f(-1.0, 0.0, 0.0);
-
-	glEnd();
-
-	//base
-	glBegin(GL_QUADS);
-	glColor3f(1.0f, 0.0f, 1.0f);
-	glVertex3f(1.0f, 0.0f, -2.0f);
-	glVertex3f(1.0f, 0.0f, 0.0f);
-	glVertex3f(-1.0f, 0.0f, 0.0f);
-	glVertex3f(-1.0f, 0.0f, -2.0f);
-
-	glEnd();
-
-	glBegin(GL_LINES);
-
-	glColor3f(1.0f, 0.0f, 0.0f);
-
-	glVertex3f(-1.5f, 3.0f, -1.0f);
-	glVertex3f(-1.5f, 1.0f, -1.0f);
-
-	glVertex3f(-1.5f, 2.0f, -1.0f);
-	glVertex3f(-0.5f, 2.0f, -1.0f);
-
-	glVertex3f(-0.5f, 3.0f, -1.0f);
-	glVertex3f(-0.5f, 1.0f, -1.0f);
-
-	glVertex3f(0.0f, 2.75f, -1.0f);
-	glVertex3f(0.0f, 1.0f, -1.0f);
-
-	glVertex3f(0.0f, 2.85f, -1.0f);
-	glVertex3f(0.0f, 3.0f, -1.0f);
-
-	glEnd();
-
-	glutSwapBuffers();
-}
-
-void key1(unsigned char key, int x, int y)
-{
-    switch (key)
-    {
-         case 27 :
-            exit(0);
-            break;
-
-		case 56 :
-			//8
-			keyMSG = 1;
-			break;
-		case 52 :
-			//4
-			keyMSG = 2;
-			break;
-		case 53 :
-			//5
-			keyMSG = 3;
-			break;
-
-		case 54:
-			//6
-			keyMSG = 4;
-			break;
-
-		case 55 :
-			//7
-			keyMSG = 5;
-			break;
-		case 57 :
-			//9
-			keyMSG = 6;
-			break;
-
-		case 49 :
-			//1
-			keyMSG = 7;
-			break;
-
-		case 51 :
-			//3
-			keyMSG = 8;
-			break;
-
-		case 50 :
-			//2
-			keyMSG = 9;
-			break;
-
-        default:
-            break;
-    }
-    glutPostRedisplay();
-}
-
 int main(int argc, char *argv[])
 {
 	
@@ -271,10 +23,212 @@ int main(int argc, char *argv[])
 		  <<"  2: Reset"<<endl;
 
 
+	Screen s(argc, argv);
 
-
-	Screen ass(argc, argv);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+GLfloat xrot, yrot, zrot;
+GLfloat xscl = 1, yscl = 1, zscl = 1;
+GLfloat zoomMSG = -5.0;
+int keyMSG = 0;
+
+
+void displayz()
+{
+glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+glLoadIdentity();
+
+
+if (keyMSG == 1) {
+glTranslatef(0.0f, 0.0f, zoomMSG);
+glScalef(xscl, yscl, zscl);
+glRotatef(xrot, 1.0f, 0.0f, 0.0f);
+glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+xrot -= 1.6f;
+keyMSG = 0;
+
+}
+else if (keyMSG == 2) {
+glTranslatef(0.0f, 0.0f, zoomMSG);
+glScalef(xscl, yscl, zscl);
+glRotatef(xrot, 1.0f, 0.0f, 0.0f);
+glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+yrot -= 1.6f;
+keyMSG = 0;
+
+}
+else if (keyMSG == 3) {
+glTranslatef(0.0f, 0.0f, zoomMSG);
+glScalef(xscl, yscl, zscl);
+glRotatef(xrot, 1.0f, 0.0f, 0.0f);
+glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+xrot += 1.6f;
+keyMSG = 0;
+
+}
+else if (keyMSG == 4) {
+glTranslatef(0.0f, 0.0f, zoomMSG);
+glScalef(xscl, yscl, zscl);
+glRotatef(xrot, 1.0f, 0.0f, 0.0f);
+glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+yrot += 1.6f;
+keyMSG = 0;
+
+}
+else if (keyMSG == 5) {
+if (xscl > 1 || yscl > 1 || zscl > 1) {
+xscl /= 1.5;
+yscl /= 1.5;
+zscl /= 1.5;
+}
+else {
+xscl /= 1.5;
+yscl /= 1.5;
+zscl /= 1.5;
+}
+
+glTranslatef(0.0f, 0.0f, zoomMSG);
+glScalef(xscl, yscl, zscl);
+glRotatef(xrot, 1.0f, 0.0f, 0.0f);
+glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+keyMSG = 0;
+
+}
+else if (keyMSG == 6) {
+if (xscl > 1 || yscl > 1 || zscl > 1) {
+xscl *= 1.5;
+yscl *= 1.5;
+zscl *= 1.5;
+}
+else {
+xscl *= 1.5;
+yscl *= 1.5;
+zscl *= 1.5;
+}
+
+glTranslatef(0.0f, 0.0f, zoomMSG);
+glScalef(xscl, yscl, zscl);
+glRotatef(xrot, 1.0f, 0.0f, 0.0f);
+glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+keyMSG = 0;
+
+}
+else if (keyMSG == 7) {
+zoomMSG += -1;
+
+glTranslatef(0.0f, 0.0f, zoomMSG);
+glScalef(xscl, yscl, zscl);
+glRotatef(xrot, 1.0f, 0.0f, 0.0f);
+glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+keyMSG = 0;
+}
+else if (keyMSG == 8) {
+zoomMSG += 1;
+
+glTranslatef(0.0f, 0.0f, zoomMSG);
+glScalef(xscl, yscl, zscl);
+glRotatef(xrot, 1.0f, 0.0f, 0.0f);
+glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+keyMSG = 0;
+
+}
+else if (keyMSG == 9) {
+xscl = 1;
+yscl = 1;
+zscl = 1;
+xrot = 0;
+yrot = 0;
+zrot = 0;
+zoomMSG = -5.0;
+
+glTranslatef(0.0f, 0.0f, zoomMSG);
+glScalef(xscl, yscl, zscl);
+glRotatef(xrot, 1.0f, 0.0f, 0.0f);
+glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+
+keyMSG = 0;
+
+}
+else {
+glTranslatef(0.0f, 0.0f, zoomMSG);
+glScalef(xscl, yscl, zscl);
+glRotatef(xrot, 1.0f, 0.0f, 0.0f);
+glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+
+}
+
+}
+
+void key1(unsigned char key, int x, int y)
+{
+switch (key)
+{
+case 27 :
+exit(0);
+break;
+
+case 56 :
+//8
+keyMSG = 1;
+break;
+case 52 :
+//4
+keyMSG = 2;
+break;
+case 53 :
+//5
+keyMSG = 3;
+break;
+
+case 54:
+//6
+keyMSG = 4;
+break;
+
+case 55 :
+//7
+keyMSG = 5;
+break;
+case 57 :
+//9
+keyMSG = 6;
+break;
+
+case 49 :
+//1
+keyMSG = 7;
+break;
+
+case 51 :
+//3
+keyMSG = 8;
+break;
+
+case 50 :
+//2
+keyMSG = 9;
+break;
+
+default:
+break;
+}
+glutPostRedisplay();
+}
+
+*/
+
 
 
 
