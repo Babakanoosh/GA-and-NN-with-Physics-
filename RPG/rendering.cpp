@@ -23,3 +23,76 @@ void resize(int width, int height)
 	glEnable(GL_CULL_FACE);
 }
 
+void display()
+{
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity();
+
+		glTranslatef(0.0f, 0.0f, -5.0f);
+		glScalef(1.0f, 1.0f, 1.0f);
+		glRotatef(0.0f, 1.0f, 0.0f, 0.0f);
+		glRotatef(0.0f, 0.0f, 1.0f, 0.0f);
+
+
+
+
+
+
+	//pyramid sides without face
+	glBegin(GL_TRIANGLE_FAN);
+
+	glVertex3f(0.0, 1.0, -1.0);//dunno
+
+							   //front face
+	glVertex3f(-1.0, 0.0, 0.0);
+	glColor3f(0.0f, 1.0f, 0.0f);
+
+	glVertex3f(1.0f, 0.0f, 0.0f);//dunno
+
+								 //right face
+	glColor3f(1.0f, 0.5f, 0.0f);
+	glVertex3f(1.0f, 0.0f, -2.0f);
+
+	//back face
+	glColor3f(0.7f, 0.1f, 0.4f);
+	glVertex3f(-1.0f, 0.0f, -2.0f);
+
+	//left face
+	glColor3f(0.0f, 0.0f, 1.0f);
+	glVertex3f(-1.0, 0.0, 0.0);
+
+	glEnd();
+
+	//base
+	glBegin(GL_QUADS);
+	glColor3f(1.0f, 0.0f, 1.0f);
+	glVertex3f(1.0f, 0.0f, -2.0f);
+	glVertex3f(1.0f, 0.0f, 0.0f);
+	glVertex3f(-1.0f, 0.0f, 0.0f);
+	glVertex3f(-1.0f, 0.0f, -2.0f);
+
+	glEnd();
+
+	glBegin(GL_LINES);
+
+	glColor3f(1.0f, 0.0f, 0.0f);
+
+	glVertex3f(-1.5f, 3.0f, -1.0f);
+	glVertex3f(-1.5f, 1.0f, -1.0f);
+
+	glVertex3f(-1.5f, 2.0f, -1.0f);
+	glVertex3f(-0.5f, 2.0f, -1.0f);
+
+	glVertex3f(-0.5f, 3.0f, -1.0f);
+	glVertex3f(-0.5f, 1.0f, -1.0f);
+
+	glVertex3f(0.0f, 2.75f, -1.0f);
+	glVertex3f(0.0f, 1.0f, -1.0f);
+
+	glVertex3f(0.0f, 2.85f, -1.0f);
+	glVertex3f(0.0f, 3.0f, -1.0f);
+
+	glEnd();
+
+	glutSwapBuffers();
+}

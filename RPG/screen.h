@@ -5,14 +5,15 @@
 
 class Screen {
 	public:
+		void start();
+		Screen(int argc, char *argv[]);
+		~Screen();
 
-	protected:
+	private:
 		GLfloat xrot, yrot, zrot; //axis rotation
 		GLfloat xscl = 1, yscl = 1, zscl = 1; //axis scale
 		GLfloat zoom = -5.0;
 		int keyMSG = 0; //key pressed
-	private:
-
 };
 
 #endif // !SCREEN_H
