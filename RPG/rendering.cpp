@@ -1,13 +1,20 @@
+//********************************************************************
+//
+// File: rendering.cpp
+// Author: Callum Stewart
+// Date: 22/7/2016
+//
+// Purpose: A library of rendering functions to be used by the screen class.
+//
+//********************************************************************
 #include "rendering.h"
 #include "stdafx.h"
 
-void idle()
-{
-glutPostRedisplay();
+void idle(){
+   glutPostRedisplay();
 }
 
-void resize(int width, int height)
-{
+void resize(int width, int height){
 	glViewport(0, 0, width, height);
 
 	glMatrixMode(GL_PROJECTION);
@@ -23,8 +30,11 @@ void resize(int width, int height)
 	glEnable(GL_CULL_FACE);
 }
 
-void display()
-{
+void applyKeyIO(int keys[2]){
+   
+}
+
+void display(){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 

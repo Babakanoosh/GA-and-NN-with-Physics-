@@ -1,3 +1,15 @@
+//********************************************************************
+//
+// File: rpg.cpp
+// Author: Callum Stewart
+// Date: 22/7/2016
+//
+// Purpose: An openGL rendering program. The command line and openGL window are on separate threads
+//          so the user can give commands to the openGL loop; the command line I/O inaccessible if not in a separate thread.
+//          The camera is controlled by WASD and the world is controlled by the command I/O and the num pad.
+//          Objects are read in from an OBJ file and rendered.
+//
+//********************************************************************
 #include "stdafx.h"
 #include "rendering.h"
 #include "file.h"
@@ -6,15 +18,11 @@
 #include <thread>
 
 
-//for switch (msg) and getCmd readability
-#define INVALID   -1  // -1 standard # for invalid
-#define QUIT       0  //  0 standard for quit
-#define HELP       1
-
 
 using namespace std;
+
 int getCmd();
-int asdf(int argc, char *argv[]);
+int drawHUD(int argc, char *argv[]);
 
 int main(int argc, char *argv[])
 {
@@ -35,85 +43,13 @@ int main(int argc, char *argv[])
 
 
 
-	std::thread first(asdf, argc, argv);
-	std::thread second(&Screen::start, Screen(argc, argv));
+	std::thread cmdWindow(drawHUD, argc, argv);
+	std::thread glWindow(&Screen::start, Screen(argc, argv));
 	
 
 	return 0;
 
 }
-
-
-
-
-
-int asdf(int argc, char *argv[]) {
-
-	//below here is not executed. i will experiment with multithreading to see if this can run adjacent to the openGL window.
-	bool displayScreen = false;
-	for (int i = 1; i<argc; i++) {
-		if (!(strcmp(argv[i], "-s")) || !(strcmp(argv[i], "-screen"))) {
-			cout << i;
-			displayScreen = true;
-		}
-	}
-	int msg = 0;
-
-	if (argc <= 1) {//if no command-line arguments are given resort to displaying help menu
-		screen(3);
-
-	}
-	else if (displayScreen) {//if "-s" "-screen" is in command arguments then display interactive screen and handle other arguments (if any)
-		screen(3);
-
-		do {
-			msg = getCmd(); //gets case for switch
-			screen(2);
-
-			switch (msg)//calls the different board class functions
-			{
-			case INVALID:
-				screen(-1);
-				break;
-
-			case QUIT:
-				screen(1);
-				return 0;//end program
-
-			case HELP:
-				screen(3);
-				break;
-
-			default:
-				std::cout << "Command-switch case error!"; //incase something odd happens
-			}
-		} while (msg != 0);
-
-	}
-	else {//if command-line arguments are given process them
-		for (int i = 1; i < argc; i++) {
-			printf("   =%s=\n", argv[i]);
-		}
-	}
-}
-
-
-int getCmd() {
-	string temp = "";
-	cin >> temp;
-
-	if (temp == "quit" || temp == "q") {
-		return QUIT;
-	}
-	else if (temp == "help" || temp == "h") {
-		return HELP;
-	}
-	else {
-		return INVALID;
-	}
-	//cout << "ass";
-}
-
 
 
 /*
@@ -248,63 +184,6 @@ glRotatef(yrot, 0.0f, 1.0f, 0.0f);
 }
 
 }
-
-void key1(unsigned char key, int x, int y)
-{
-switch (key)
-{
-case 27 :
-exit(0);
-break;
-
-case 56 :
-//8
-keyMSG = 1;
-break;
-case 52 :
-//4
-keyMSG = 2;
-break;
-case 53 :
-//5
-keyMSG = 3;
-break;
-
-case 54:
-//6
-keyMSG = 4;
-break;
-
-case 55 :
-//7
-keyMSG = 5;
-break;
-case 57 :
-//9
-keyMSG = 6;
-break;
-
-case 49 :
-//1
-keyMSG = 7;
-break;
-
-case 51 :
-//3
-keyMSG = 8;
-break;
-
-case 50 :
-//2
-keyMSG = 9;
-break;
-
-default:
-break;
-}
-glutPostRedisplay();
-}
-
 */
 
 
