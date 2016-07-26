@@ -7,7 +7,9 @@
 
 #include <iostream>
 #include <string>
-#include "gl/freeglut.h"
+#include "include/glew.h"
+#include "include/freeglut.h"
+
 
 #endif // !STDAFX_H
 
