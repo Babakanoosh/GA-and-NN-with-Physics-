@@ -9,6 +9,9 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="DLL">
+      <UniqueIdentifier>{c7dc88ee-ca09-48d8-be07-78f4428c6a83}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -60,7 +63,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\freeglutd.dll" />
-    <None Include="bin\glew32.dll" />
+    <None Include="bin\freeglutd.dll">
+      <Filter>DLL</Filter>
+    </None>
+    <None Include="bin\glew32.dll">
+      <Filter>DLL</Filter>
+    </None>
   </ItemGroup>
 </Project>
