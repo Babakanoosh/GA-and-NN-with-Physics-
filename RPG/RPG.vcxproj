@@ -123,6 +123,10 @@ xcopy "$(ProjectDir)bin\glew32.dll" "$(TargetDir)" /Y /D</Command>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\freeglutd.dll" />
+    <None Include="bin\glew32.dll" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

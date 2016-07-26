@@ -59,4 +59,8 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\freeglutd.dll" />
+    <None Include="bin\glew32.dll" />
+  </ItemGroup>
 </Project>
